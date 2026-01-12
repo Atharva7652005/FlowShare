@@ -19,7 +19,7 @@
     <h1 class="brand">Join a <span>Meeting</span></h1>
     <p class="tagline">Enter the room ID to connect instantly.</p>
 
-    <form method="POST" action="{% url 'join_meeting' %}">
+    <form method="POST" action="{% url 'join_meeting' %}" target="_blank">
         {% csrf_token %}
 
         <label for="roomID">Room ID</label>
