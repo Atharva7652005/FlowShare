@@ -9,6 +9,16 @@
 </head>
 <body>
 
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="nav-brand">Streamify</div>
+    <button 
+        onclick="window.location.href='{% url 'logout' %}'" 
+        class="btn logout nav-btn">
+        Logout
+    </button>
+</nav>
+
 <div class="background">
     <div class="orb orb1"></div>
     <div class="orb orb2"></div>
@@ -16,31 +26,30 @@
 </div>
 
 <div class="container">
-    <h1 class="brand">Streamify <span>Dashboard</span></h1>
+    <h1 class="brand">Dashboard</h1>
     <p class="tagline">Welcome! Start or join your next meeting instantly.</p>
 
-    <div class="card">
+    <div class="card grid">
 
-        <!-- New Meeting -->
         <button 
             onclick="openMeeting('{% url 'new_meeting' %}')" 
             class="btn join">
             New Meeting
         </button>
 
-        <!-- Join Meeting -->
         <button 
             onclick="openMeeting('{% url 'join_meeting' %}')" 
             class="btn new">
             Join Meeting
         </button>
 
-        <!-- Logout -->
-        <button 
-            onclick="window.location.href='{% url 'logout' %}'" 
-            class="btn logout">
-            Logout
-        </button> 
+        <button class="btn join">
+            Drop File
+        </button>
+
+        <button class="btn new">
+            Get File
+        </button>
 
     </div>
 </div>
