@@ -21,23 +21,21 @@
 
     <div class="card">
 
-        <!-- New Meeting opens in NEW TAB -->
+        <!-- New Meeting -->
         <button 
-            onclick="window.open('{% url 'new_meeting' %}', '_blank')" 
-            rel="noopener noreferrer" 
+            onclick="openMeeting('{% url 'new_meeting' %}')" 
             class="btn join">
             New Meeting
         </button>
 
-        <!-- Join Meeting opens in NEW TAB -->
+        <!-- Join Meeting -->
         <button 
-            onclick="window.open('{% url 'join_meeting' %}')" 
-            rel="noopener noreferrer" 
+            onclick="openMeeting('{% url 'join_meeting' %}')" 
             class="btn new">
             Join Meeting
         </button>
 
-        <!-- Logout stays same tab -->
+        <!-- Logout -->
         <button 
             onclick="window.location.href='{% url 'logout' %}'" 
             class="btn logout">
@@ -46,6 +44,19 @@
 
     </div>
 </div>
+
+<script>
+let meetingWindow = null;
+
+function openMeeting(url) {
+    if (meetingWindow == null || meetingWindow.closed) {
+        meetingWindow = window.open(url, "MeetingTab");
+    } else {
+        meetingWindow.location.href = url;
+        meetingWindow.focus();
+    }
+}
+</script>
 
 </body>
 </html>
