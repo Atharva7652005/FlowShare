@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | Streamify</title>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body>
+
+<div class="background">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+</div>
+
+<div class="container">
+    <h1 class="brand">Streamify <span>Dashboard</span></h1>
+    <p class="tagline">Welcome! Start or join your next meeting instantly.</p>
+
+    <div class="card">
+
+        <button onclick="window.location.href='{% url 'new_meeting' %}'"class="btn join">
+            New Meeting
+        </button>
+        
+        <button onclick="window.location.href='{% url 'join_meeting' %}'" class="btn new">
+            Join Meeting
+        </button>
+
+        <button onclick="window.location.href='{% url 'logout' %}'" class="btn logout">
+            Logout
+        </button> 
+
+    </div>
+</div>
+
+</body>
+</html>

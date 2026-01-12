@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Join Meeting | Streamify</title>
+    <link rel="stylesheet" href="{% static 'css/join_room.css' %}">
+</head>
+<body>
+
+<div class="background">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+</div>
+
+<div class="container">
+    <h1 class="brand">Join a <span>Meeting</span></h1>
+    <p class="tagline">Enter the room ID to connect instantly.</p>
+
+    <form method="POST" action="{% url 'join_meeting' %}">
+        {% csrf_token %}
+
+        <label for="roomID">Room ID</label>
+        <input 
+            type="text" 
+            id="roomID" 
+            name="roomID" 
+            placeholder="Enter Room ID"
+            required
+        >
+
+        <button type="submit">Join Meeting</button>
+    </form>
+</div>
+
+</body>
+</html>

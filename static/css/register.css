@@ -1,0 +1,229 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    background: radial-gradient(circle at top, #0b1220, #000);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: white;
+}
+
+/* Animated Background Orbs */
+.background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.orb {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(#6a82fb, transparent);
+    border-radius: 50%;
+    filter: blur(80px);
+    animation: float 10s infinite ease-in-out;
+}
+
+.orb1 {
+    top: -50px;
+    left: -50px;
+}
+.orb2 {
+    bottom: -60px;
+    right: -40px;
+    background: radial-gradient(#fc5c7d, transparent);
+}
+.orb3 {
+    top: 40%;
+    left: 30%;
+    background: radial-gradient(#4df3ff, transparent);
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-40px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Main Container */
+.container {
+    position: relative;
+    text-align: center;
+    max-width: 430px;
+    width: 90%;
+    z-index: 2;
+}
+
+/* Heading Branding */
+.brand {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.brand span {
+    background: linear-gradient(135deg, #6a82fb, #fc5c7d);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.tagline {
+    margin-top: 6px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #cfd6ff;
+    opacity: 0.8;
+}
+
+/* Glass Form */
+form {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 2rem 2.5rem;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+/* Sub Heading */
+form h2 {
+    margin-bottom: 1.2rem;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+/* Label */
+label {
+    text-align: left;
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    color: #d6dfff;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: 0.7rem;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 1rem;
+    outline: none;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    transition: 0.3s;
+}
+
+/* Glow on focus */
+input:focus {
+    background: rgba(255,255,255,0.3);
+    box-shadow: 0 0 12px rgba(106,130,251,0.8);
+    transform: scale(1.02);
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 0.9rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #6a82fb, #fc5c7d);
+    transition: 0.3s ease;
+}
+
+/* Hover Effects */
+button:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.4);
+}
+
+/* Click Effect */
+button:active {
+    transform: scale(0.98);
+}
+
+/* Fade Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.already {
+    font-size: 0.9rem;
+    color: #d6dfff;
+    margin-bottom: 1rem;
+}
+
+.already a {
+    color: #6a82fb;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.already a:hover {
+    color: #fc5c7d;
+}
+
+.error {
+  color: red;
+  background: #ffe5e5;
+  padding: 8px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.field-error {
+  color: red;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.help-text {
+  color: #ccc;
+  font-size: 13px;
+}
+.error-box {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.error-text {
+    color: #ff6b6b;
+    font-size: 13px;
+    margin-top: 6px;
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-3px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
