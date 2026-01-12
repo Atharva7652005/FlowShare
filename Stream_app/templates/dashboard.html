@@ -21,15 +21,26 @@
 
     <div class="card">
 
-        <button onclick="window.location.href='{% url 'new_meeting' %}'" target="_blank" rel="noopener noreferrer" class="btn join">
+        <!-- New Meeting opens in NEW TAB -->
+        <button 
+            onclick="window.open('{% url 'new_meeting' %}', '_blank')" 
+            rel="noopener noreferrer" 
+            class="btn join">
             New Meeting
         </button>
 
-        <button onclick="window.location.href='{% url 'join_meeting' %}'" target="_blank" rel="noopener noreferrer" class="btn new">
+        <!-- Join Meeting opens in NEW TAB -->
+        <button 
+            onclick="window.open('{% url 'join_meeting' %}', '_blank')" 
+            rel="noopener noreferrer" 
+            class="btn new">
             Join Meeting
         </button>
 
-        <button onclick="window.location.href='{% url 'logout' %}'" class="btn logout">
+        <!-- Logout stays same tab -->
+        <button 
+            onclick="window.location.href='{% url 'logout' %}'" 
+            class="btn logout">
             Logout
         </button> 
 
