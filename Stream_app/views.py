@@ -72,3 +72,10 @@ def logout_streamify(request):
     logout(request)
     request.session.flush()
     return redirect("/login")
+
+def drop_file(request):
+    print("Drop File")
+
+
+def get_file(request):
+    print("Get File")

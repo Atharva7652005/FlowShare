@@ -43,11 +43,15 @@
             Join Meeting
         </button>
 
-        <button class="btn join">
+        <button 
+            onclick="openMeeting('{% url 'drop_file' %}')"
+            class="btn join">
             Drop File
         </button>
 
-        <button class="btn new">
+        <button 
+            onclick="openMeeting('{% url 'get_file' %}')"
+            class="btn new">
             Get File
         </button>
 
