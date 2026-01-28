@@ -1,0 +1,79 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Streamify — Get Files</title>
+  <link rel="stylesheet" href="{% static 'css/get_file.css' %}">
+  <!-- Favicon -->
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2965/2965335.png" type="image/x-icon">
+  <style>
+    /* Back Link */
+    .back-link {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-weight: 500;
+      z-index: 10;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .back-link:hover {
+      color: white;
+      transform: translateX(-3px);
+    }
+
+    /* White Placeholder */
+    ::placeholder {
+      color: rgba(255, 255, 255, 0.7) !important;
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Back to Home -->
+  <a href="{% url 'home' %}" class="back-link">
+    <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+    </svg>
+    Back to Home
+  </a>
+
+  <!-- Animated Background -->
+  <div class="background">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+  </div>
+
+  <div class="wrap">
+    <h1>Retrieve Files</h1>
+    <p class="muted">Enter the storage ID to fetch files uploaded to that room.</p>
+
+    <div class="row" style="margin-top:20px">
+      <input id="storageInput" type="text" placeholder="Enter 4-digit storage ID" aria-label="Storage ID"
+        maxlength="4" />
+      <button id="getBtn">Get Files</button>
+      <div id="loading" style="display:none">
+        <div class="loader" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <div id="msg" class="muted" style="margin-top:15px; min-height: 20px;"></div>
+
+    <div class="result" id="result" aria-live="polite"></div>
+  </div>
+
+  <script src="{% static 'javascript/get_file.js' %}"></script>
+</body>
+
+</html>

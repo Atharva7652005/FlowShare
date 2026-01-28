@@ -2,74 +2,71 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Dashboard | Streamify</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1055/1055666.png" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 </head>
+
 <body>
 
-<!-- Navbar -->
-<nav class="navbar">
-    <div class="nav-brand">Streamify</div>
-    <button 
-        onclick="window.location.href='{% url 'logout' %}'" 
-        class="btn logout nav-btn">
-        Logout
-    </button>
-</nav>
-
-<div class="background">
-    <div class="orb orb1"></div>
-    <div class="orb orb2"></div>
-    <div class="orb orb3"></div>
-</div>
-
-<div class="container">
-    <h1 class="brand">Dashboard</h1>
-    <p class="tagline">Welcome! Start or join your next meeting instantly.</p>
-
-    <div class="card grid">
-
-        <button 
-            onclick="openMeeting('{% url 'new_meeting' %}')" 
-            class="btn join">
-            New Meeting
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-brand">Streamify</div>
+        <button onclick="window.location.href=`{% url 'logout' %}`;" class="btn logout nav-btn">
+            Logout
         </button>
+    </nav>
 
-        <button 
-            onclick="openMeeting('{% url 'join_meeting' %}')" 
-            class="btn new">
-            Join Meeting
-        </button>
-
-        <button 
-            onclick="openMeeting('{% url 'drop_file' %}')"
-            class="btn join">
-            Drop File
-        </button>
-
-        <button 
-            onclick="openMeeting('{% url 'get_file' %}')"
-            class="btn new">
-            Get File
-        </button>
-
+    <div class="background">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
     </div>
-</div>
 
-<script>
-let meetingWindow = null;
+    <div class="container">
+        <h1 class="brand">Dashboard</h1>
+        <p class="tagline">Welcome! Start or join your next meeting instantly.</p>
 
-function openMeeting(url) {
-    if (meetingWindow == null || meetingWindow.closed) {
-        meetingWindow = window.open(url, "MeetingTab");
-    } else {
-        meetingWindow.location.href = url;
-        meetingWindow.focus();
-    }
-}
-</script>
+        <div class="card grid">
+
+            <button onclick="window.open(`{% url 'new_meeting' %}`, '_blank')" class="btn join">
+                New Meeting
+            </button>
+
+            <button onclick="window.open(`{% url 'join_meeting' %}`, '_blank')" class="btn new">
+                Join Meeting
+            </button>
+
+            <button onclick="window.open(`{% url 'drop_file' %}`, '_blank')" class="btn join"
+                style="background: linear-gradient(135deg, #6ee7b7, #3b82f6);">
+                Drop File
+            </button>
+
+            <button onclick="window.open(`{% url 'get_file' %}`, '_blank')" class="btn new"
+                style="background: linear-gradient(135deg, #3b82f6, #9333ea);">
+                Get File
+            </button>
+
+
+        </div>
+    </div>
+
+    <script>
+        let meetingWindow = null;
+
+        function openMeeting(url) {
+            if (meetingWindow == null || meetingWindow.closed) {
+                meetingWindow = window.open(url, "MeetingTab");
+            } else {
+                meetingWindow.location.href = url;
+                meetingWindow.focus();
+            }
+        }
+    </script>
 
 </body>
+
 </html>

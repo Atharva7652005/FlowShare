@@ -2,45 +2,77 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Login | Streamify</title>
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1055/1055666.png" type="image/x-icon">
+    <style>
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-family: sans-serif;
+            font-size: 14px;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            color: white;
+            transform: translateX(-3px);
+        }
+
+        ::placeholder {
+            color: rgba(255, 255, 255, 0.7) !important;
+            opacity: 1;
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="background">
-    <div class="orb orb1"></div>
-    <div class="orb orb2"></div>
-    <div class="orb orb3"></div>
-</div>
+    <a href="{% url 'home' %}" class="back-link">← Back to Home</a>
 
-<div class="container">
-    <h1 class="brand">Welcome back to <span>Streamify</span></h1>
+    <div class="background">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
+    </div>
 
-    <form method="POST" action="{% url 'login' %}">
-        {% csrf_token %}
+    <div class="container">
+        <h1 class="brand">Welcome back to <span>Streamify</span></h1>
 
-        <h2>Login</h2>
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
 
-        <label>Username</label>
-        <input type="text" name="username" required>
+            <h2>Login</h2>
 
-        <label>Password</label>
-        <input type="password" name="password" required>
+            <label>Username</label>
+            <input type="text" name="username" required placeholder="Enter your username">
 
-        {% if error %}
+            <label>Password</label>
+            <input type="password" name="password" required placeholder="Enter your password">
+
+            {% if error %}
             <p class="error-text">{{ error }}</p>
-        {% endif %}
+            {% endif %}
 
-        <p class="already">
-            Don't have an account?
-            <a href="{% url 'register' %}">Register</a>
-        </p>
+            <p class="already">
+                Don't have an account?
+                <a href="{% url 'register' %}">Register</a>
+            </p>
 
-        <button type="submit">Login</button>
-    </form>
-</div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
 
 </body>
+
 </html>

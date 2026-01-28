@@ -2,64 +2,96 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Registration | Streamify</title>
     <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1055/1055666.png" type="image/x-icon">
+    <style>
+        .back-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-family: sans-serif;
+            font-size: 14px;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            color: white;
+            transform: translateX(-3px);
+        }
+
+        ::placeholder {
+            color: rgba(255, 255, 255, 0.7) !important;
+            opacity: 1;
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="background">
-    <div class="orb orb1"></div>
-    <div class="orb orb2"></div>
-    <div class="orb orb3"></div>
-</div>
+    <a href="{% url 'home' %}" class="back-link">← Back to Home</a>
 
-<div class="container">
-    <h1 class="brand">Welcome to <span>Streamify</span></h1>
-    <p class="tagline">Connect face-to-face instantly.</p>
+    <div class="background">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
+    </div>
 
-    <form method="POST" action="{% url 'register' %}">
-        {% csrf_token %}
+    <div class="container">
+        <h1 class="brand">Welcome to <span>Streamify</span></h1>
+        <p class="tagline">Connect face-to-face instantly.</p>
 
-        <h2>Create Your Account</h2>
+        <form method="POST" action="{% url 'register' %}">
+            {% csrf_token %}
 
-        <label>Username</label>
-        <input type="text" name="username"
-               value="{{ form.username.value|default:'' }}" required>
+            <h2>Create Your Account</h2>
 
-        <label>Email</label>
-        <input type="email" name="email"
-               value="{{ form.email.value|default:'' }}" required>
+            <label>Username</label>
+            <input type="text" name="username" value="{{ form.username.value|default:'' }}" required
+                placeholder="Choose a username">
 
-        <label>Password</label>
-        <input type="password" name="password1" required>
+            <label>Email</label>
+            <input type="email" name="email" value="{{ form.email.value|default:'' }}" required
+                placeholder="Enter your email">
 
-        <label>Repeat Password</label>
-        <input type="password" name="password2" required>
+            <label>Password</label>
+            <input type="password" name="password1" required placeholder="Create a password">
 
-        {% if submitted and form.errors %}
+            <label>Repeat Password</label>
+            <input type="password" name="password2" required placeholder="Confirm your password">
+
+            {% if submitted and form.errors %}
             <div class="error-box">
                 {% for field in form %}
-                    {% for error in field.errors %}
-                        <p class="error-text">{{ error }}</p>
-                    {% endfor %}
+                {% for error in field.errors %}
+                <p class="error-text">{{ error }}</p>
+                {% endfor %}
                 {% endfor %}
 
                 {% for error in form.non_field_errors %}
-                    <p class="error-text">{{ error }}</p>
+                <p class="error-text">{{ error }}</p>
                 {% endfor %}
             </div>
-        {% endif %}
+            {% endif %}
 
-        <p class="already">
-            Already have an account?
-            <a href="{% url 'login' %}">Login</a>
-        </p>
+            <p class="already">
+                Already have an account?
+                <a href="{% url 'login' %}">Login</a>
+            </p>
 
-        <button type="submit">Register</button>
-    </form>
-</div>
+            <button type="submit">Register</button>
+        </form>
+    </div>
 
 </body>
+
 </html>
