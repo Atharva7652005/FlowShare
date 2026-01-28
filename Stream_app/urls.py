@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name="home"),
+    path('about/', views.streamify_info, name="streamify_info"),
 
     # Auth Urls
     path('register/', views.register, name='register'),
@@ -19,4 +20,9 @@ urlpatterns = [
     # File Urls
     path('drop_file/', views.drop_file, name="drop_file"),
     path('get_file/', views.get_file, name="get_file")
+]
+# API endpoints (non-breaking additions)
+urlpatterns += [
+    path('api/upload/', views.api_upload, name='api_upload'),
+    path('api/rooms/<str:storage_id>/files', views.api_get_files, name='api_get_files'),
 ]
