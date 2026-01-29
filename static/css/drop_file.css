@@ -320,3 +320,26 @@ button.ghost:hover {
         justify-content: space-between;
     }
 }
+
+@media (max-width: 600px) {
+    .container {
+        padding: 1.5rem;
+        margin-top: 60px;
+    }
+
+    .top {
+        flex-direction: column;
+    }
+
+    .controls {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .id-box,
+    #createRoom,
+    #uploadBtn {
+        width: 100%;
+        justify-content: center;
+    }
+}

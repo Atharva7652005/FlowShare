@@ -260,9 +260,27 @@ button:disabled {
     }
 }
 
-@media(max-width:520px) {
-    .row {
-        flex-direction: column;
-        align-items: stretch;
+.row {
+    flex-direction: column;
+    align-items: stretch;
+}
+}
+
+@media (max-width: 600px) {
+    .wrap {
+        padding: 1.5rem;
+        width: 95%;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    input {
+        min-width: 100%;
+    }
+
+    button {
+        width: 100%;
     }
 }

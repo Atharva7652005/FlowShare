@@ -71,6 +71,8 @@ body {
     max-width: 430px;
     width: 90%;
     z-index: 2;
+    margin-top: 60px;
+    margin-bottom: 40px;
 }
 
 /* Heading Branding */
