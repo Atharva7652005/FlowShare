@@ -133,9 +133,14 @@ def api_get_files(request, storage_id):
 
     files = []
     for sf in entry.storage_files.all():
+        try:
+            size = sf.storage_files.size
+        except (FileNotFoundError, OSError):
+            size = 0  # or None, indicating file is missing locally
+            
         files.append({
             'filename': sf.storage_files.name.split('/')[-1],
-            'size': sf.storage_files.size,
+            'size': size,
             'download_url': request.build_absolute_uri(sf.storage_files.url)
         })
     return JsonResponse({'storage_id': storage_id, 'files': files})
