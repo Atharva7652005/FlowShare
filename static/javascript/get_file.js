@@ -51,7 +51,7 @@ async function fetchFiles(id) {
             </div>
           </div>
           <div style="display:flex;gap:8px">
-            <a class="download" href="${url}" target="_blank" rel="noopener">Download</a>
+            <a class="download" href="${url}" download="${f.filename}">Download</a>
           </div>
         `;
             result.appendChild(el);
