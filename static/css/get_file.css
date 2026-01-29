@@ -7,12 +7,11 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    height: 100vh;
+    min-height: 100vh;
     background: radial-gradient(circle at top, #0b1220, #000);
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
     color: white;
 }
 
@@ -106,7 +105,7 @@ h1 {
 
 .muted {
     font-size: 0.9rem;
-    color: #cfd6ff;
+    color: white;
     opacity: 0.8;
 }
 
@@ -238,7 +237,7 @@ button:disabled {
 }
 
 .error {
-    color: #ff6b6b;
+    color: white;
     background: rgba(255, 107, 107, 0.1);
     padding: 10px;
     border-radius: 8px;

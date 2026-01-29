@@ -38,11 +38,13 @@ body {
     top: -50px;
     left: -50px;
 }
+
 .orb2 {
     bottom: -60px;
     right: -40px;
     background: radial-gradient(#fc5c7d, transparent);
 }
+
 .orb3 {
     top: 40%;
     left: 30%;
@@ -50,9 +52,17 @@ body {
 }
 
 @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-40px); }
-    100% { transform: translateY(0px); }
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-40px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
 }
 
 /* Main Container */
@@ -87,12 +97,12 @@ body {
 
 /* Glass Form */
 form {
-    background: rgba(255,255,255,0.08);
+    background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 2rem 2.5rem;
     border-radius: 14px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     animation: fadeInUp 0.8s ease-out;
 }
 
@@ -122,15 +132,15 @@ input[type="email"] {
     border: none;
     margin-bottom: 1rem;
     outline: none;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
     color: white;
     transition: 0.3s;
 }
 
 /* Glow on focus */
 input:focus {
-    background: rgba(255,255,255,0.3);
-    box-shadow: 0 0 12px rgba(106,130,251,0.8);
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 12px rgba(106, 130, 251, 0.8);
     transform: scale(1.02);
 }
 
@@ -151,7 +161,7 @@ button {
 /* Hover Effects */
 button:hover {
     transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 12px 20px rgba(0,0,0,0.4);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
 }
 
 /* Click Effect */
@@ -165,11 +175,13 @@ button:active {
         opacity: 0;
         transform: translateY(40px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
+
 .already {
     font-size: 0.9rem;
     color: #d6dfff;
@@ -188,30 +200,31 @@ button:active {
 }
 
 .error {
-  color: red;
-  background: #ffe5e5;
-  padding: 8px;
-  border-radius: 6px;
-  margin-bottom: 10px;
+    color: red;
+    background: #ffe5e5;
+    padding: 8px;
+    border-radius: 6px;
+    margin-bottom: 10px;
 }
 
 .field-error {
-  color: red;
-  font-size: 14px;
-  margin-top: 4px;
+    color: red;
+    font-size: 14px;
+    margin-top: 4px;
 }
 
 .help-text {
-  color: #ccc;
-  font-size: 13px;
+    color: #ccc;
+    font-size: 13px;
 }
+
 .error-box {
     margin-top: 10px;
     text-align: center;
 }
 
 .error-text {
-    color: #ff6b6b;
+    color: white;
     font-size: 13px;
     margin-top: 6px;
     animation: fadeIn 0.3s ease-in;
@@ -222,6 +235,7 @@ button:active {
         opacity: 0;
         transform: translateY(-3px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
