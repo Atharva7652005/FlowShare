@@ -78,7 +78,7 @@
       <!-- Desktop Buttons -->
       <div class="hidden md:flex space-x-4">
           {% if user.is_authenticated %}
-            <a href="{% url 'logout_streamify' %}"
+            <a href="{% url 'logout' %}"
               class="px-5 py-2 rounded-lg border border-red-500 text-red-500 font-semibold hover:bg-red-500 hover:text-white transition shadow-lg hover:shadow-red-500/30">
               Logout
             </a>
@@ -108,7 +108,7 @@
         <a href="{% url 'streamify_info' %}" class="text-2xl text-gray-300 hover:text-white">About</a>
         <a href="#features" class="text-2xl text-gray-300 hover:text-white">Features</a>
         {% if user.is_authenticated %}
-          <a href="{% url 'logout_streamify' %}"
+          <a href="{% url 'logout' %}"
             class="px-6 py-2 rounded-lg border border-red-500 text-red-500 font-semibold text-xl">Logout</a>
         {% else %}
           <a href="{% url 'login' %}"
