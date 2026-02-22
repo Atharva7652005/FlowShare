@@ -9,7 +9,6 @@ import re
 import os
 from .models import StorageEntry, StorageFiles
 from .forms import RegisterForm
-# ...existing code...
 
 # Admin authentication check
 def is_admin(user):
