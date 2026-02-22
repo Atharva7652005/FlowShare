@@ -9,6 +9,7 @@ import re
 import os
 from .models import StorageEntry, StorageFiles
 from .forms import RegisterForm
+
 # ...existing code...
 
 # Admin authentication check
@@ -88,7 +89,6 @@ def home(request):
 def streamify_info(request):
     return render(request, 'streamify_info.html')
 
-
 # Register view
 def register(request):
     if request.method == "POST":
@@ -137,7 +137,11 @@ def dashboard(request):
 
 @login_required(login_url='/login')
 def videocall(request):
-    return render(request, 'videoCall.html', {'name': request.user.username})
+    return render(request, 'videoCall.html', {
+        'name': request.user.username,
+        'app_id': settings.VIDEO_APP_ID,
+        'server_secret': settings.VIDEO_SERVER_SECRET
+    })
 
 @login_required(login_url='/login')
 def join_meeting(request):
