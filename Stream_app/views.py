@@ -123,7 +123,10 @@ def login(request):
 
         if user is not None:
             auth_login(request, user)
-            return redirect('dashboard')
+            if user.is_superuser or user.username == "admin":
+                return redirect("admin_dashboard")
+            else:
+                return redirect('dashboard')
         else:
             error = "Invalid username or password"
 
