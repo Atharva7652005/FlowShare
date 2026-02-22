@@ -137,9 +137,15 @@ def dashboard(request):
 
 @login_required(login_url='/login')
 def videocall(request):
+    # Ensure app_id is passed as an integer
+    app_id = settings.VIDEO_APP_ID
+    try:
+        app_id = int(app_id)
+    except (TypeError, ValueError):
+        app_id = 0
     return render(request, 'videoCall.html', {
         'name': request.user.username,
-        'app_id': settings.VIDEO_APP_ID,
+        'app_id': app_id,
         'server_secret': settings.VIDEO_SERVER_SECRET
     })
 
