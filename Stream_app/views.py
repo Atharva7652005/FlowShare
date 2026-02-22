@@ -1,13 +1,85 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login as auth_login, logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.models import User
 from django.http import JsonResponse, HttpResponse, HttpResponseBadRequest
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 import re
-
+import os
 from .models import StorageEntry, StorageFiles
 from .forms import RegisterForm
+# ...existing code...
+
+# Admin authentication check
+def is_admin(user):
+    return user.is_authenticated and user.username == 'admin'
+
+# Admin login view
+def admin_login(request):
+    error = None
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        if username == "admin" and password == "Khairnar@2005":
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                auth_login(request, user)
+                return redirect('admin_dashboard')
+            else:
+                error = "Admin user not found. Please create admin user in Django admin."
+        else:
+            error = "Invalid admin credentials."
+    return render(request, "login.html", {"error": error})
+
+# Admin dashboard view
+@user_passes_test(is_admin, login_url='/admin_login')
+def admin_dashboard(request):
+    from django.contrib.auth.models import User
+    total_users = User.objects.count()
+    total_rooms = StorageEntry.objects.count()
+    users = User.objects.all()
+    rooms = StorageEntry.objects.all()
+    return render(request, "admin_dashboard.html", {
+        "total_users": total_users,
+        "total_rooms": total_rooms,
+        "users": users,
+        "rooms": rooms
+    })
+
+# Delete user (admin only)
+@user_passes_test(is_admin, login_url='/admin_login')
+def admin_delete_user(request, user_id):
+    if request.method == "POST":
+        user = get_object_or_404(User, id=user_id)
+        # Delete user's storage rooms and files
+        user_rooms = StorageEntry.objects.filter(storage_code=user.username)
+        for room in user_rooms:
+            admin_delete_room_helper(room)
+        user.delete()
+        return redirect('admin_dashboard')
+    return HttpResponseBadRequest("Invalid request")
+
+# Delete storage room (admin only)
+@user_passes_test(is_admin, login_url='/admin_login')
+def admin_delete_room(request, room_id):
+    if request.method == "POST":
+        room = get_object_or_404(StorageEntry, id=room_id)
+        admin_delete_room_helper(room)
+        return redirect('admin_dashboard')
+    return HttpResponseBadRequest("Invalid request")
+
+# Helper to delete room and files
+def admin_delete_room_helper(room):
+    files = StorageFiles.objects.filter(storage_entry_id=room)
+    for f in files:
+        # Delete file from storage
+        if f.storage_files:
+            file_path = f.storage_files.path
+            if os.path.exists(file_path):
+                os.remove(file_path)
+        f.delete()
+    room.delete()
 
 # Home view
 def home(request): 
@@ -65,7 +137,13 @@ def dashboard(request):
 
 @login_required(login_url='/login')
 def videocall(request):
-    return render(request, 'videoCall.html', {'name': request.user.username})
+    app_id = os.environ.get('APP_ID', 0)
+    server_secret = os.environ.get('SERVER_SECRET', '')
+    return render(request, 'videoCall.html', {
+        'name': request.user.username,
+        'app_id': app_id,
+        'server_secret': server_secret
+    })
 
 @login_required(login_url='/login')
 def join_meeting(request):

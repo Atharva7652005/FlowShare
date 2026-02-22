@@ -1,3 +1,4 @@
+
 from django.urls import path
 from . import views
 
@@ -12,6 +13,12 @@ urlpatterns = [
 
     # Dashboard Urls
     path('dashboard/', views.dashboard, name='dashboard'),
+
+    # Admin Dashboard URLs
+    path('admin_login/', views.admin_login, name='admin_login'),
+    path('admin_dashboard/', views.admin_dashboard, name='admin_dashboard'),
+    path('admin_delete_user/<int:user_id>/', views.admin_delete_user, name='admin_delete_user'),
+    path('admin_delete_room/<int:room_id>/', views.admin_delete_room, name='admin_delete_room'),
 
     # Meeting Urls
     path('meeting/',views.videocall, name="new_meeting"),
