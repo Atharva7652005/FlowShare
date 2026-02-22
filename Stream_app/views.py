@@ -9,6 +9,7 @@ import re
 import os
 from .models import StorageEntry, StorageFiles
 from .forms import RegisterForm
+# ...existing code...
 
 # Admin authentication check
 def is_admin(user):
@@ -136,13 +137,7 @@ def dashboard(request):
 
 @login_required(login_url='/login')
 def videocall(request):
-    app_id = os.environ.get('APP_ID', 0)
-    server_secret = os.environ.get('SERVER_SECRET', '')
-    return render(request, 'videoCall.html', {
-        'name': request.user.username,
-        'app_id': app_id,
-        'server_secret': server_secret
-    })
+    return render(request, 'videoCall.html', {'name': request.user.username})
 
 @login_required(login_url='/login')
 def join_meeting(request):
