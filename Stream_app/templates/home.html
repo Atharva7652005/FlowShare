@@ -67,12 +67,28 @@
 
       <!-- Desktop Menu -->
       <ul class="hidden md:flex space-x-8 text-gray-300">
-        <li><a href="{% url 'home' %}" class="hover:text-white relative group">Home<span
-              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full"></span></a></li>
-        <li><a href="{% url 'streamify_info' %}" target="_blank" class="hover:text-white relative group">About<span
-              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink-500 transition-all group-hover:w-full"></span></a></li>
-        <li><a href="#features" class="hover:text-white relative group">Features<span
-              class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-500 transition-all group-hover:w-full"></span></a></li>
+        <li>
+          <a href="{% url 'home' %}" class="hover:text-white relative group">Home
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full"></span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'streamify_info' %}" target="_blank" class="hover:text-white relative group">About
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-pink-500 transition-all group-hover:w-full"></span>
+          </a>
+        </li>
+        <li>
+          <a href="#features" class="hover:text-white relative group">Features
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-500 transition-all group-hover:w-full"></span>
+          </a>
+        </li>
+        {% if user.is_authenticated %}
+        <li>
+          <a href="{% url 'dashboard' %}" class="hover:text-white relative group">Dashboard
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-500 transition-all group-hover:w-full"></span>
+          </a>
+        </li>
+        {% endif %}
       </ul>
 
       <!-- Desktop Buttons -->
