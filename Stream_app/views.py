@@ -9,6 +9,8 @@ import re
 import os
 from .models import StorageEntry, StorageFiles
 from .forms import RegisterForm
+import boto3
+from botocore.config import Config
 
 # ...existing code...
 
@@ -153,11 +155,16 @@ def videocall(request):
 
 @login_required(login_url='/login')
 def join_meeting(request):
+    app_id = settings.VIDEO_APP_ID
     if request.method == 'POST':
         roomID = request.POST['roomID']
         return redirect("/meeting?roomID="+roomID)
     
-    return render(request, 'join_room.html', {'name': request.user.username})
+    return render(request, 'join_room.html', {
+        'name': request.user.username,
+        'app_id': app_id,
+        'server_secret': settings.VIDEO_SERVER_SECRET
+        })
 
 def logout_streamify(request):
     print("logout successully")
@@ -207,6 +214,28 @@ def api_upload(request):
     }, status=201)
 
 
+def generate_download_url(file_field):
+    s3 = boto3.client(
+        "s3",
+        region_name=settings.AWS_S3_REGION_NAME,
+        aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+        aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
+        config=Config(signature_version="s3v4")
+    )
+
+    file_key = file_field.name
+    filename = file_key.split("/")[-1]
+
+    return s3.generate_presigned_url(
+        "get_object",
+        Params={
+            "Bucket": settings.AWS_STORAGE_BUCKET_NAME,
+            "Key": file_key,
+            "ResponseContentDisposition": f'attachment; filename="{filename}"'
+        },
+        ExpiresIn=3600,
+    )
+
 def api_get_files(request, storage_id):
     if not re.fullmatch(r'\d{4}', storage_id):
         return JsonResponse({'error': 'invalid storage id'}, status=400)
@@ -217,6 +246,7 @@ def api_get_files(request, storage_id):
 
     files = []
     for sf in entry.storage_files.all():
+        print(sf.storage_files.storage)
         try:
             size = sf.storage_files.size
         except (FileNotFoundError, OSError):
@@ -225,6 +255,6 @@ def api_get_files(request, storage_id):
         files.append({
             'filename': sf.storage_files.name.split('/')[-1],
             'size': size,
-            'download_url': request.build_absolute_uri(sf.storage_files.url)
+            'download_url': generate_download_url(sf.storage_files)
         })
     return JsonResponse({'storage_id': storage_id, 'files': files})
