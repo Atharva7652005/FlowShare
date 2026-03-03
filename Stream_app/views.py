@@ -168,7 +168,7 @@ def logout_streamify(request):
     print("logout successully")
     logout(request)
     request.session.flush()
-    return redirect("/login")
+    return redirect("/login/")
 
 def drop_file(request):
     return render(request, "drop_file.html")
