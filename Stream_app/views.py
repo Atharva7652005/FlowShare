@@ -11,6 +11,7 @@ from .models import StorageEntry, StorageFiles
 from .forms import RegisterForm
 import boto3
 from botocore.config import Config
+from django.urls import reverse
 
 # Admin authentication check
 def is_admin(user):
@@ -168,7 +169,7 @@ def logout_streamify(request):
     print("logout successully")
     logout(request)
     request.session.flush()
-    return redirect("/login/")
+    return redirect(reverse("login"))
 
 def drop_file(request):
     return render(request, "drop_file.html")
