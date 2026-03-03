@@ -12,8 +12,6 @@ from .forms import RegisterForm
 import boto3
 from botocore.config import Config
 
-# ...existing code...
-
 # Admin authentication check
 def is_admin(user):
     return user.is_authenticated and user.username == 'admin'
