@@ -88,6 +88,7 @@ WSGI_APPLICATION = 'Streamify.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
 # DATABASES = {
 #     'default': dj_database_url.config(
 #         default=os.environ.get('DATABASE_URL'),
@@ -157,6 +158,9 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Media Files Configuration
+
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = BASE_DIR /'media'
 
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
